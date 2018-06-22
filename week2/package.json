@@ -1,0 +1,11 @@
+{
+  "name": "week2",
+  "version": "1.0.0",
+  "description": "week2 home work",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "chandu87",
+  "license": "ISC"
+}
