@@ -21,8 +21,7 @@ class ContactList{
 
         writeFileP(this.fileName, JSON.stringify(this.list))
         .then(()=>{
-            console.log("------ File saved ---------");
-            console.log(this.list);
+            console.log("-- File saved ->> ", this.list);
         })
         .catch((err)=>{console.log("error saving file" + err)});
 
@@ -30,12 +29,10 @@ class ContactList{
     load(){
         readFileP(this.fileName)
         .then((data)=>{
-            // console.log(data);
            JSON.parse(data).forEach(contact => {
                this.loadedData.push(new Contact(contact.name, contact.age, contact.phoneNumber));
            });;
            console.log("------ File Loaded ------- ");
-        //    console.log(this.loadedData);
         })
         .catch((err)=>{console.log("Error Loading File" + err)});
     }
