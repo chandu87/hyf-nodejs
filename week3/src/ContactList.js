@@ -7,7 +7,8 @@ const readFile = util.promisify(fs.readFile);
 class Contact {
     constructor(obj) {
         this.name = obj.name;
-        this.age = obj.age;
+		this.age = obj.age;
+		this.place = obj.place;
     };
     addPhone(number) {
 

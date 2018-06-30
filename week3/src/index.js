@@ -5,7 +5,7 @@ import * as fs from "fs";
 import * as qs from "querystring";
 
 import { Contact, ContactList } from"./ContactList.js";
-
+// import contactsPage from "../public/contacts.html";
 let contacts = new ContactList("./src/contacts.json");
 
 http
@@ -26,10 +26,14 @@ http
 
 	    req.on("end", () => {
 	    	console.log("Received params:", qs.parse(body));
-		    const name = qs.parse(body).name;
+			const name = qs.parse(body).name;
+			const age = qs.parse(body).age; //-----------added more contact information
+			const place = qs.parse(body).place;
 
 			const contact = new Contact({
-				name: name
+				name: name,
+				age: age,
+				place: place
 			});
 
 			return contacts.load()
@@ -48,6 +52,17 @@ http
 				res.end();
 			})
 	    });
+	}else if(req.url == "/all-contacts"){   //-----------All-contacts route
+		res.writeHead(200, {"Content-Type": "text/html"}); 
+		fs.readFile("./public/contacts.html", function(err, contactsPage){
+			if(err){
+				console.log(err);
+			}else{
+			res.write("Display all contacts");
+			res.end(contactsPage);
+		}
+		});
+			
 	}
 	else
 	// if none the urls above match, search for file in public folder
