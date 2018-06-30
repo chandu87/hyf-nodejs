@@ -32,4 +32,6 @@ http
       res.end();
     }
   })
-  .listen(3000);
+  .listen(3000, function(){
+    console.log("Server Started at : 3000");
+  });
