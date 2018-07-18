@@ -23,7 +23,7 @@ app.get("/contacts", function(req, res) {
     const filteredData = myContactList.list.filter(element => {
       return element.age == req.query.age;
     });
-    res.send(filteredData);
+    res.send(filteredData.length == 0 ? "Entered age not found, Try again" : filteredData);
   }
 });
 
