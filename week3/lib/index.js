@@ -40,7 +40,7 @@ http.createServer(function (req, res) {
 		req.on("end", function () {
 			console.log("Received params:", qs.parse(body));
 			var name = qs.parse(body).name;
-			var age = qs.parse(body).age;
+			var age = qs.parse(body).age; //-----------added more contact information
 			var place = qs.parse(body).place;
 
 			var contact = new _ContactList.Contact({
@@ -63,13 +63,19 @@ http.createServer(function (req, res) {
 			});
 		});
 	} else if (req.url == "/all-contacts") {
+		//-----------All-contacts route
 		res.writeHead(200, { "Content-Type": "text/html" });
+		var obj;
+		fs.readFile('./src/contacts.json', 'utf8', function (err, data) {
+			if (err) throw err;
+			obj = JSON.parse(data);
+		});
 		fs.readFile("./public/contacts.html", function (err, contactsPage) {
 			if (err) {
 				console.log(err);
 			} else {
 				res.write("Display all contacts");
-				res.end(contactsPage, { name: "chandu" });
+				res.end(obj);
 			}
 		});
 	} else

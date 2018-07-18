@@ -54,6 +54,7 @@ http
 	    });
 	}else if(req.url == "/all-contacts"){   //-----------All-contacts route
 		res.writeHead(200, {"Content-Type": "text/html"}); 
+		
 		fs.readFile("./public/contacts.html", function(err, contactsPage){
 			if(err){
 				console.log(err);
