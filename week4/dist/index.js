@@ -10,6 +10,8 @@ var _bodyParser = require('body-parser');
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
+var _constants = require('constants');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const app = (0, _express2.default)();
@@ -25,11 +27,20 @@ app.get("/", function (req, res) {
     res.send("Hello world");
 });
 app.get("/contacts", function (req, res) {
-    res.send(myContactList.list);
+    console.log(!Object.keys(req.query).length);
+    if (!Object.keys(req.query).length) {
+        res.send(myContactList.list);
+    } else {
+        const filteredData = myContactList.list.filter(element => {
+            return element.age == req.query.age;
+        });
+        res.send(filteredData);
+    }
 });
 app.get("/test", function (req, res) {
     res.send({ name: "chandra" });
 });
+
 app.post("/contacts", function (req, res) {
     // console.log(req.body);
     const contact = new _ContactList.Contact(req.body);
