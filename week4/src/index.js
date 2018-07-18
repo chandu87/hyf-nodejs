@@ -25,12 +25,11 @@ app.post("/contacts", function(req, res){
     myContactList.addContact(contact).then(list=> res.send(list));
 });
 app.patch("/contacts/:contact_id", function(req, res){
-    res.send("this is a patch request"+ req.params.contact_id);
-})
+    res.send(myContactList.updateContact(req.params.contact_id));
+});
 app.delete("/contacts/:contact_id", function(req, res){
-    myContactList.deleteContact(req.params.contact_id);
-    res.send("this is a delete request => " + req.params.contact_id);
-})
+    res.send(myContactList.deleteContact(req.params.contact_id));
+});
 
 app.listen(3000, function(){
     console.log("Server started at : 3000");
