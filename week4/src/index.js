@@ -41,7 +41,8 @@ app.post("/contacts", function(req, res) {
 
 //PATCH ROUTE for updating contacts which can be found in POSTMAN
 app.patch("/contacts/:contact_id", function(req, res) {
-  res.send(myContactList.updateContact(req.params.contact_id));
+    const contactToUpdate = new Contact(req.body);
+  res.send(myContactList.updateContact(req.params.contact_id, contactToUpdate));
 });
 
 //DELETE ROUTE for deleting a item 

@@ -48,12 +48,14 @@ export class ContactList {
     console.log(ids);
     return ids.indexOf(contactId);
   }
-  updateContact(contactId) {
+  updateContact(contactId, contactToUpdate) {
     console.log("------- List before update");
     console.log(this.list);
-    const updateId = this.findIndex(contactId);
+	const updateId = this.findIndex(contactId);
+	// console.log(contactToUpdate);
+	//   console.log(this.list[updateId]);
     if (updateId !== -1) {
-      this.list[updateId].age = "27";
+	  this.list[updateId] = contactToUpdate;	  
       console.log("------- List after update -----------");
 	  console.log(this.list);
 	  this.save(this.list)

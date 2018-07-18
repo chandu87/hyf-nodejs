@@ -35,7 +35,7 @@ app.get("/contacts", function (req, res) {
     const filteredData = myContactList.list.filter(element => {
       return element.age == req.query.age;
     });
-    res.send(filteredData.length == 0 ? "Entered age not found" : filteredData);
+    res.send(filteredData.length == 0 ? "Entered age not found, Try again" : filteredData);
   }
 });
 
@@ -53,7 +53,9 @@ app.post("/contacts", function (req, res) {
 
 //PATCH ROUTE for updating contacts which can be found in POSTMAN
 app.patch("/contacts/:contact_id", function (req, res) {
-  res.send(myContactList.updateContact(req.params.contact_id));
+  const contactToUpdate = new _ContactList.Contact(req.body);
+  console.log(contactToUpdate);
+  res.send(myContactList.updateContact(req.params.contact_id, contactToUpdate));
 });
 
 //DELETE ROUTE for deleting a item 
