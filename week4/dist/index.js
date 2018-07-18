@@ -40,7 +40,7 @@ app.patch("/contacts/:contact_id", function (req, res) {
 });
 app.delete("/contacts/:contact_id", function (req, res) {
     myContactList.deleteContact(req.params.contact_id);
-    res.send("this is a delete request" + req.params.contact_id);
+    res.send("this is a delete request => " + req.params.contact_id);
 });
 
 app.listen(3000, function () {

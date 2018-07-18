@@ -45,6 +45,24 @@ export class ContactList {
 			return this.save(this.list);
 		}
 	}
+	deleteContact(contactId){
+		console.log(contactId);
+		console.log(this.list);
+		const ids= this.list.map(item =>{ return item.id});
+		console.log(ids);
+		const deleteId = ids.indexOf(contactId);
+		console.log(deleteId);
+		if(deleteId !== -1){
+		this.list.splice(deleteId,1);
+		console.log("------- List after delete -----------");
+		console.log(this.list);	
+	}else{
+		console.log("Item with ID not found");
+	}
+//		console.log(this.list.indexOf());
+		// console.log(this.list.slice(0,contactId-1));
+		// console.log(this.list.slice(contactId+1,this.list.length));
+	}
 
 	save(list){
 		return writeFile(path.resolve(__dirname, this.filename), JSON.stringify(list), "utf8")
